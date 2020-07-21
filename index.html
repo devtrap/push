@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Push tes!</title>
+</head>    
+<body>
+    <button onclick="subscribe()">subscribe</button>
+    <script>
+        addEventListener('load',async () => {
+            // self.registration.unregister({immediate: true})
+            console.log("ta inja ok1")
+            let sw = await navigator.serviceWorker.register('http://localhost:5050/app-assets/sw.js')
+            console.log("ta inja ok2")
+
+            console.log(sw)
+        });
+
+        async function subscribe() {
+            console.log("this made push")
+            let sw = await navigator.serviceWorker.ready;
+            console.log("this made push2")
+
+            let push = await sw.pushManager.subscribe({
+                userVisibleOnly:true,
+                applicationServerKey:
+                'BGwsMTaxzSQIU9csZYxfC8NvvzmxYcEuJkCn9zXCDoHFcSWa8k8Dhl9B_m36NKQx7FWNYid5QXf_G73WJrf3wHA'
+            });
+            console.log("ijaye");
+
+            console.log(JSON.stringify(push));
+
+            console.log("ijaye");
+
+        }
+    </script>
+</body>
+
+
+
+</html>
